@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Who's that Pokemon</title>
+    <title>Who's that Pokemon?</title>
     <meta charset="utf-8" />
 
     <!-- Adding bootstrap. Source: http://www.w3schools.com/bootstrap/bootstrap_get_started.asp -->
@@ -11,27 +11,52 @@
 
     <!-- Importing css file -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!--
+To collect end-user usage analytics about your application,
+insert the following script into each page you want to track.
+Place this code immediately before the closing </head> tag,
+and before any other scripts. Your first data will appear
+automatically in just a few seconds.
+-->
+<script type="text/javascript">
+  var appInsights=window.appInsights||function(config){
+    function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;s.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(s);try{t.cookie=u.cookie}catch(h){}for(t.queue=[],i=["Event","Exception","Metric","PageView","Trace","Dependency"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+    }({
+        instrumentationKey:"f826ab2e-9722-4ae4-9663-b39171025721"
+    });
 
+    window.appInsights=appInsights;
+    appInsights.trackPageView();
+</script>
 </head>
-<body class="body">
-    <div id = "title">
-        <h1>Who's that Pokemon</h1>
-    </div>
+<body>
+	<div class="banner">
+		Who's that Pokemon?
+		<div class="subtitle"> Can you recognize these Pokemon from their in-game sprites? </div>
+	</div>
+    <div id="start-button" style = "height: 75px;">
+        <button id = "sbutton" type="button" class="btn btn-primary btn-lg btn-success" onclick = "start()">Start</button>
 
-    <div id = "image">
+	</div>
+	<div class="pokemon-sprite">
+		<div>
+			<img id="sprite" src="img/question-mark.jpg" style="width:20%;">
+		</div>
+	</div>
+	<div class="score">
+		<div id="score-text"> Score: 0</div>
+		<div id="streak-text"> Streak: 0</div>
+		<div id="misses-text"> Lives: 3</div>
+	</div>
+	<div id="input-box">
+		<input class="typeahead" id = "textbox" onkeypress="handle(event)" type="text" placeholder="Pokemon name">
+	</div>
 
-    </div>
+    <div id="guess-button" style = "width : 100%; text-align: center; display: none;">
+        <button type="button" class="btn btn-primary btn-lg btn-success" onclick = "guess()">Guess</button>
 
-    <div id = "answer">
-
-    </div>
-
-
+	</div>
 </body>
-
-
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

@@ -5,6 +5,7 @@ var randomPokemon : number = Math.floor(Math.random() * 151) + 1;
 var pokemonName : string = "";
 var spriteUrl : string = "";
 var currentName : string = "";
+var first : boolean = false;
 
 $( document ).ready(function() {
     getSprite();
@@ -36,7 +37,7 @@ function guess() : void {
     }
     setSprite()
     getSprite();
-    setTimeout(updateValues, 250);
+    setTimeout(updateValues, 500);
     $("#textbox").val("");
 
 }
@@ -48,20 +49,24 @@ function updateValues() : void {
 
 }
 function start() : void {
+    $("#textbox").val("");
     $("#sprite").attr("src", "img/testimg.png");
     $("#sbutton").hide();
     $("#guess-button").css("display", "inline-block");
-
+    first = true;
     setSprite()
     getSprite();
 
 }
 function handle(key) : void {
     if(key.keyCode === 13){
+        if (first) {
             key.preventDefault(); // Ensure it is only this code that rusn
             guess();
         }
+    }
 }
+
 function getSprite() : void {
 $.ajax({
    url: "http://pokeapi.co/api/v2/pokemon-form/" + randomPokemon + "/",

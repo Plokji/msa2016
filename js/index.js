@@ -5,6 +5,7 @@ var randomPokemon = Math.floor(Math.random() * 151) + 1;
 var pokemonName = "";
 var spriteUrl = "";
 var currentName = "";
+var first = false;
 $(document).ready(function () {
     getSprite();
 });
@@ -34,7 +35,7 @@ function guess() {
     }
     setSprite();
     getSprite();
-    setTimeout(updateValues, 250);
+    setTimeout(updateValues, 500);
     $("#textbox").val("");
 }
 function updateValues() {
@@ -43,16 +44,20 @@ function updateValues() {
     $("#misses-text").html("Lives: " + lives);
 }
 function start() {
+    $("#textbox").val("");
     $("#sprite").attr("src", "img/testimg.png");
     $("#sbutton").hide();
     $("#guess-button").css("display", "inline-block");
+    first = true;
     setSprite();
     getSprite();
 }
 function handle(key) {
     if (key.keyCode === 13) {
-        key.preventDefault();
-        guess();
+        if (first) {
+            key.preventDefault();
+            guess();
+        }
     }
 }
 function getSprite() {

@@ -13,7 +13,6 @@ function setSprite() {
     $("#sprite").attr("src", spriteUrl);
 }
 function guess() {
-    console.log(document.getElementById("textbox").value);
     if ((document.getElementById("textbox").value.toUpperCase()) == currentName) {
         streak++;
         score = score + streak;
@@ -72,12 +71,8 @@ function getSprite() {
         if (data) {
             currentName = pokemonName;
             spriteUrl = data.sprites.front_default;
-            console.log(data);
             pokemonName = data.name.toUpperCase();
-            console.log(pokemonName);
-            console.log(spriteUrl);
             randomPokemon = Math.floor(Math.random() * 151) + 1;
-            console.log(randomPokemon);
         }
     })
         .fail(function (error) {

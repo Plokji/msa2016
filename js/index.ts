@@ -16,7 +16,6 @@ function setSprite() : void {
 }
 
 function guess() : void {
-    console.log(document.getElementById("textbox").value);
     if ((document.getElementById("textbox").value.toUpperCase()) == currentName) {
         streak++;
         score = score + streak;
@@ -80,13 +79,9 @@ $.ajax({
          currentName = pokemonName;
          spriteUrl = data.sprites.front_default;
 
-         console.log(data);
          pokemonName = data.name.toUpperCase();
-         console.log(pokemonName);
-         console.log(spriteUrl);
 
          randomPokemon = Math.floor(Math.random() * 151) + 1
-         console.log(randomPokemon);
      }
    })
    .fail (function (error) {
